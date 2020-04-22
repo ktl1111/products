@@ -16,3 +16,6 @@ while True:
 print(products)
 
 print(products[0][2])
+
+for product in products:
+	print(product[0], 'price: NT', product[1], 'remaining stock: ', product[2])
