@@ -1,5 +1,14 @@
+# 讀取檔案
 products = []
+with open('products.csv', 'r', encoding='utf-8') as f:
+	for line in f:
+		if 'Product Name' in line:
+			continue
+		name, price, stock= line.strip().split(',') #.strip()把尾巴的換行符號\n去掉，再用.split(',')來用逗點做分割
+		products.append([name, price, stock])
+print(products)
 
+#讓使用者輸入
 while True:
 	name = input('Please enter product name: ')
 	if name == 'q':
@@ -8,21 +17,14 @@ while True:
 	price = int(price)
 	stock = input('Enter number of stock: ')
 	stock = int(stock)
-	# p = []
-	# p.append(name)
-	# p.append(price)
-	# p.append(stock) # ->	p = [name, price, stock]
-
 	products.append([name, price, stock])
-
 print(products)
 
-print(products[0][2])
-
+# 印出所有購買紀錄
 for product in products:
 	print(product[0], 'price: NT', product[1], 'remaining stock: ', product[2])
 
-#write file
+# 寫入檔案
 with open('products.csv', 'w', encoding='utf-8') as f:
 	f.write('Product Name, Price(NTD), Stock\n')
 	for p in products:
